@@ -4,7 +4,7 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	let {
-		ref = $bindable(null),
+		ref = $bindable(),
 		value = $bindable(),
 		class: className,
 		inputsize = 'md',
