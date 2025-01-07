@@ -4,7 +4,7 @@
 		Progress as ProgressPrimitive,
 		type WithoutChildrenOrChild,
 	} from "bits-ui";
-	import twMerge from "tailwind-merge";
+	import { twMerge } from "tailwind-merge";
 
 	let {
 		ref = $bindable(null),
