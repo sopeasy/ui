@@ -21,7 +21,7 @@
 
 <style>
     .progress {
-        animation: progress 1s infinite linear;
+        animation: progress 1.5s infinite ease-in-out;
     }
 
     .left-right {
