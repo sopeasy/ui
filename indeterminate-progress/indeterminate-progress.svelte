@@ -5,8 +5,8 @@
         class: className,
         progressClass,
     }: {
-        class: string;
-        progressClass: string;
+        class?: string;
+        progressClass?: string;
     } = $props();
 </script>
 
