@@ -1,6 +1,5 @@
 <script lang="ts">
     import { cn } from "$lib/ui/utils.js";
-
     let {
         class: className,
         progressClass,
@@ -12,20 +11,35 @@
     } = $props();
 
     let animationFinished = $state(false);
+    let shouldShow = $state(true);
+
+    // Watch for active changes
+    $effect(() => {
+        if (active) {
+            shouldShow = true;
+            animationFinished = false;
+        }
+    });
+
+    function handleAnimationEnd() {
+        if (!active) {
+            shouldShow = false;
+        }
+        animationFinished = true;
+    }
 </script>
 
-<div class={cn("h-1.5 w-full bg-green-100 overflow-hidden", className)}>
-    {#if active || !animationFinished}
+<div class={cn("h-1.5 w-full overflow-hidden bg-green-100", className)}>
+    {#if shouldShow}
         <div
-            on:animationend={() => {
-                animationFinished = true;
-            }}
-            on:animationstart={() => {
+            onanimationend={handleAnimationEnd}
+            onanimationstart={() => {
                 animationFinished = false;
             }}
             class={cn(
-                "progress w-full h-full bg-green-500 left-right",
+                "progress left-right h-full w-full bg-green-500",
                 progressClass,
+                active ? "infinite-progress" : "single-progress",
             )}
         ></div>
     {/if}
@@ -33,12 +47,17 @@
 
 <style>
     .progress {
+        transform-origin: 0% 50%;
+    }
+
+    .infinite-progress {
         animation: progress 1.5s infinite ease-in-out;
     }
 
-    .left-right {
-        transform-origin: 0% 50%;
+    .single-progress {
+        animation: progress 1.5s ease-in-out;
     }
+
     @keyframes progress {
         0% {
             transform: translateX(0) scaleX(0);
