@@ -4,19 +4,31 @@
     let {
         class: className,
         progressClass,
+        active = true,
     }: {
-        class?: string;
-        progressClass?: string;
+        class: string;
+        progressClass: string;
+        active: boolean;
     } = $props();
+
+    let animationFinished = $state(false);
 </script>
 
 <div class={cn("h-1.5 w-full bg-green-100 overflow-hidden", className)}>
-    <div
-        class={cn(
-            "progress w-full h-full bg-green-500 left-right",
-            progressClass,
-        )}
-    ></div>
+    {#if active || !animationFinished}
+        <div
+            on:animationend={() => {
+                animationFinished = true;
+            }}
+            on:animationstart={() => {
+                animationFinished = false;
+            }}
+            class={cn(
+                "progress w-full h-full bg-green-500 left-right",
+                progressClass,
+            )}
+        ></div>
+    {/if}
 </div>
 
 <style>
