@@ -4,38 +4,31 @@
         class: className,
         progressClass,
         active = true,
+        showing = $bindable(true),
     }: {
         class: string;
         progressClass: string;
         active: boolean;
+        showing: boolean;
     } = $props();
 
-    let animationFinished = $state(false);
-    let shouldShow = $state(true);
-
-    // Watch for active changes
     $effect(() => {
         if (active) {
-            shouldShow = true;
-            animationFinished = false;
+            showing = true;
         }
     });
 
     function handleAnimationEnd() {
         if (!active) {
-            shouldShow = false;
+            showing = false;
         }
-        animationFinished = true;
     }
 </script>
 
 <div class={cn("h-1.5 w-full overflow-hidden bg-green-100", className)}>
-    {#if shouldShow}
+    {#if showing}
         <div
             onanimationend={handleAnimationEnd}
-            onanimationstart={() => {
-                animationFinished = false;
-            }}
             class={cn(
                 "progress left-right h-full w-full bg-green-500",
                 progressClass,
