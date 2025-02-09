@@ -17,7 +17,7 @@
 <SelectPrimitive.Trigger
 	bind:ref
 	class={cn(
-		'group flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1',
+		'duration-250 group flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2  text-sm outline-[3px] outline-transparent transition-[outline-color] focus-visible:outline focus-visible:outline-primary/60 disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-muted-foreground [&>span]:line-clamp-1',
 		className
 	)}
 	{...restProps}
