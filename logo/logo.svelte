@@ -3,7 +3,7 @@
 </script>
 
 <svg
-  class={twMerge("h-9 w-9 fill-primary", $$props.class)}
+  class={twMerge("h-9 w-9 fill-green-500", $$props.class)}
   viewBox="0 0 181.42 181.42"
   ><g id="Layer_2" data-name="Layer 2"
     ><g id="Layer_1-2" data-name="Layer 1"
