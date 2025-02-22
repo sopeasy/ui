@@ -53,7 +53,7 @@
 		</Dialog.Root>
 	{:else}
 		<Drawer.Root bind:open>
-			<Drawer.Trigger>
+			<Drawer.Trigger class={className}>
 				{@render children?.()}
 			</Drawer.Trigger>
 			<Drawer.Content>
