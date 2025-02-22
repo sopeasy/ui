@@ -7,6 +7,8 @@
 		description?: Snippet;
 		footer?: Snippet;
 		children?: Snippet;
+		content?: Snippet;
+		class?:string;
 	};
 </script>
 
@@ -15,13 +17,16 @@
 	import * as Dialog from '../dialog';
 	import * as Drawer from '../drawer';
 
-	let { open = $bindable(), description, footer, title, children }: ModalProps = $props();
+	let { open = $bindable(), description, footer, title, children,content, class:className }: ModalProps = $props();
 </script>
 
 <MediaQuery query="(min-width: 640px)" let:matches>
 	{#if matches}
 		<Dialog.Root bind:open>
-			<Dialog.Content class="pt-4">
+			<Dialog.Trigger class={className}>
+				{@render children?.()}
+			</Dialog.Trigger>
+			<Dialog.Content class={"p-4"}>
 				<Dialog.Header>
 					<Dialog.Title>
 						{@render title?.()}
@@ -30,7 +35,7 @@
 						{@render description?.()}
 					</Dialog.Description>
 				</Dialog.Header>
-				{@render children?.()}
+				{@render content?.()}
 				{#if footer}
 					<Dialog.Footer>
 						{@render footer?.()}
@@ -40,6 +45,9 @@
 		</Dialog.Root>
 	{:else}
 		<Drawer.Root bind:open>
+			<Drawer.Trigger>
+				{@render children?.()}
+			</Drawer.Trigger>
 			<Drawer.Content class="p-3 pb-3 pt-2">
 				<Drawer.Header>
 					<Drawer.Title>
@@ -49,7 +57,7 @@
 						{@render description?.()}
 					</Drawer.Description>
 				</Drawer.Header>
-				{@render children?.()}
+				{@render content?.()}
 				{#if footer}
 					<Drawer.Footer>
 						{@render footer?.()}
