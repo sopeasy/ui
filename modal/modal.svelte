@@ -9,6 +9,7 @@
 		children?: Snippet;
 		content?: Snippet;
 		class?: string;
+		disabled?:boolean;
 	};
 </script>
 
@@ -21,6 +22,7 @@
 		open = $bindable(),
 		description,
 		footer,
+		disabled,
 		title,
 		children,
 		content,
@@ -31,7 +33,7 @@
 <MediaQuery query="(min-width: 640px)" let:matches>
 	{#if matches}
 		<Dialog.Root bind:open>
-			<Dialog.Trigger class={className}>
+			<Dialog.Trigger class={className} {disabled}>
 				{@render children?.()}
 			</Dialog.Trigger>
 			<Dialog.Content class={'p-4'}>
@@ -53,7 +55,7 @@
 		</Dialog.Root>
 	{:else}
 		<Drawer.Root bind:open>
-			<Drawer.Trigger class={className}>
+			<Drawer.Trigger class={className} {disabled}>
 				{@render children?.()}
 			</Drawer.Trigger>
 			<Drawer.Content>
