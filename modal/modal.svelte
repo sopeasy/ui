@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import type { Snippet } from 'svelte';
+	import {browser} from '$app/environment';
 
 	type ModalProps = {
 		open?: boolean;
@@ -30,6 +31,7 @@
 	}: ModalProps = $props();
 </script>
 
+{#if browser}
 <MediaQuery query="(min-width: 640px)" let:matches>
 	{#if matches}
 		<Dialog.Root bind:open>
@@ -77,3 +79,4 @@
 		</Drawer.Root>
 	{/if}
 </MediaQuery>
+{/if}
