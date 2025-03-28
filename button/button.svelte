@@ -8,7 +8,7 @@
 		variants: {
 			variant: {
 				default:
-					'bg-gradient-to-b from-green-500 to-green-600 shadow-sm text-primary-foreground hover:bg-primary/90',
+					'bg-gradient-to-b from-green-500 to-green-600 shadow-[inset_0_1.5px_0_0_theme("colors.green.400")] text-primary-foreground hover:bg-primary/90 ',
 				destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
 				outline: 'border-input bg-background hover:bg-accent hover:text-accent-foreground border',
 				secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
